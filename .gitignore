@@ -1,0 +1,92 @@
+# Visual Studio / .NET Core / ASP.NET Core common ignores
+
+## Build folders
+bin/
+obj/
+artifacts/
+
+## User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.voxe
+
+## Visual Studio workspace
+.vs/
+.vscode/
+
+## Rider
+.idea/
+*.sln.iml
+
+## Resharper
+_ReSharper*/
+*.DotSettings.user
+
+## NuGet packages
+*.nupkg
+packages/
+.nuget/packages/
+
+## Publish output
+publish/
+publish_temp/
+*.Publish.xml
+*.azurePubxml
+
+## Runtime / debugging
+*.log
+logs/
+*.vspscc
+
+## ASP.NET / web
+wwwroot/lib/    # (optional: if you restore client libs during CI you may want to keep this)
+node_modules/
+bower_components/
+
+## Configuration / secrets
+# Do not commit any personal secret files. If you use a convention such as appsettings.Local.json, ignore it:
+appsettings.*.Local.json
+secrets.json
+
+## User secrets (stores secrets outside repo by default)
+# (No repository entry needed; keep for clarity)
+%APPDATA%\Microsoft\UserSecrets/
+
+## Certificate and signing keys
+*.pfx
+*.snk
+*.key
+
+## Database files
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+## Test results / coverage
+TestResults/
+*.trx
+coverage/
+*.coverage
+*.coveragexml
+
+## Tooling
+*.vsix
+*.nupkg
+.vsconfig
+
+## JetBrains Rider caches
+.idea/
+.idea/*
+
+## Misc
+.DS_Store
+Thumbs.db
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# End of .gitignore
