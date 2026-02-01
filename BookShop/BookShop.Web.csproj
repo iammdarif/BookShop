@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookShop.DataAccess\BookShop.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
