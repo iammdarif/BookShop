@@ -1,5 +1,6 @@
 ﻿using BookShop.DataAccess.Repository.IRepository;
 using BookShop.Models;
+using BookShop.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -22,29 +23,48 @@ namespace BookShop.Web.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> categoriesList = _unitOfWork.Category.GetAll().Select(u =>
-            new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
+            //IEnumerable<SelectListItem> categoriesList = _unitOfWork.Category.GetAll().Select(u =>
+            //new SelectListItem
+            //{
+            //    Text = u.Name,
+            //    Value = u.Id.ToString()
+            //});
             //ViewBag.Categories = categoriesList;
-            ViewData["Categories"] = categoriesList;
+            //ViewData["Categories"] = categoriesList;
 
-            return View();
+            ProductVM productVm = new() { 
+                Product = new Product(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(u =>
+                        new SelectListItem
+                        {
+                            Text = u.Name,
+                            Value = u.Id.ToString()
+                        })
+            };
+
+            return View(productVm);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductVM productVm)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(product);
+                _unitOfWork.Product.Add(productVm.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product added successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            else
+            {
+                productVm.CategoryList = _unitOfWork.Category.GetAll().Select(u =>
+                        new SelectListItem
+                        {
+                            Text = u.Name,
+                            Value = u.Id.ToString()
+                        });
+                return View(productVm);
+            }
         }
         public IActionResult Edit(int? id)
         {
