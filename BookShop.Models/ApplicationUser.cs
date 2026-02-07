@@ -15,6 +15,6 @@ namespace BookShop.Models
         [MaxLength(15)]
         public string? State { get; set; }
         [MaxLength(10)]
-        public string? PostCode { get; set; }
+        public string? PostCode { get; set; }       
     }
 }
